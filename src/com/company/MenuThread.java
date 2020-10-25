@@ -175,6 +175,8 @@ public class MenuThread extends Thread {
 
                     System.out.println(invoice.print());
 
+                    invoices.add(invoice);
+
                 }
                 catch (SAXException e) {
                     e.printStackTrace();
@@ -191,6 +193,11 @@ public class MenuThread extends Thread {
             }
         }
 
-        return "";
+        total = 0;
+        for (Invoice i: invoices) {
+            total += i.getTotal();
+        }
+
+        return "The total amount for " + invoices.size() + " invoices is $" + String.format("%.2f", total)+ "\n";
     }
 }
